@@ -392,12 +392,13 @@ code {
   font-family: consolas, Menlo, monospace, "PingFang SC", "Microsoft YaHei";
 }
 code {
-  background: #eee;
-  border-radius: 3px;
-  color: #555;
+  background: #f9f2f4;
+  border-radius: 2px;
+  color: #c7254e;
   padding: 2px 4px;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  font-size: 0.875em;
 }
 .highlight *::selection {
   background: #d6d6d6;
@@ -1148,7 +1149,7 @@ pre .javascript .function {
 }
 .site-description {
   color: #999;
-  font-size: 1em;
+  font-size: 0.875em;
   margin-top: 5px;
   text-align: center;
 }
@@ -1166,7 +1167,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #d6ed22;
+  background: #ffff05;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1256,11 +1257,11 @@ pre .javascript .function {
   color: #f5f5f5;
 }
 .sidebar-nav .sidebar-nav-active {
-  border-bottom-color: #87daff;
-  color: #87daff;
+  border-bottom-color: #ef4363;
+  color: #ef4363;
 }
 .sidebar-nav .sidebar-nav-active:hover {
-  color: #87daff;
+  color: #ef4363;
 }
 .sidebar-panel {
   display: none;
@@ -1289,7 +1290,7 @@ pre .javascript .function {
   }
 }
 .sidebar-toggle:hover .toggle-line {
-  background: #87daff;
+  background: #ef4363;
 }
 .post-toc {
   font-size: 0.875em;
@@ -1328,14 +1329,14 @@ pre .javascript .function {
   display: block;
 }
 .post-toc .nav .active > a {
-  border-bottom-color: #87daff;
-  color: #87daff;
+  border-bottom-color: #ef4363;
+  color: #ef4363;
 }
 .post-toc .nav .active-current > a {
-  color: #87daff;
+  color: #ef4363;
 }
 .post-toc .nav .active-current > a:hover {
-  color: #87daff;
+  color: #ef4363;
 }
 .site-state {
   display: flex;
@@ -1381,6 +1382,13 @@ pre .javascript .function {
   margin: 0 auto;
   text-align: center;
   width: 700px;
+}
+.footer-inner .beian {
+  display: inline-block;
+}
+.footer-inner .busuanzi-count {
+  display: inline-block;
+  margin-left: 12px;
 }
 @media (min-width: 1200px) {
   .footer-inner {
@@ -1499,7 +1507,7 @@ pre .javascript .function {
   display: none;
 }
 .back-to-top:hover {
-  color: #87daff;
+  color: #ef4363;
 }
 .back-to-top.back-to-top-on {
   bottom: 19px;
@@ -1524,11 +1532,11 @@ pre .javascript .function {
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
   overflow-wrap: break-word;
   word-wrap: break-word;
-}
-@media (min-width: 1200px) {
-  .post-body {
-    font-size: 1.125em;
-  }
+/*
+   *+desktop-large() {
+   *font-size: $font-size-large;
+   *}
+   */
 }
 .post-body .exturl .fa {
   font-size: 0.875em;
