@@ -39,7 +39,7 @@
 <p>为了让外观符合自己的感官需求，可以修改下外观</p>
 <p><img data-src="https://5127.oss-cn-shenzhen.aliyuncs.com/github/20200421235858.png" alt=""></p>
 <ul>
-<li>点击<u>获取主题</u>打开主题链接，下载<u>Catfish</u>主题并解压</li>
+<li>点击<code>获取主题</code>打开主题链接，下载<u>Catfish</u>主题并解压</li>
 <li><u>打开主题文件夹</u>把刚解压的Catfish主题里头的<u>Catfish文件夹</u>及同级目录下的<u>catfish.css</u>文件复制到主题文件夹</li>
 <li>重启下Typora，发现菜单栏主题多了一个Catfish可选项</li>
 </ul>
