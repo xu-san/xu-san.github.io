@@ -19,7 +19,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.tucew.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"www.tucew.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="使用的系统还是win10 64，在这整理下思路及搭建过程。  使用Hexo创建本地博客 给Hexo安装NexT主题 修改外观及配置 在Github创建Repository 发布Hexo到远程GitHub 绑定自定义域名 完善及之后使用">
@@ -29,14 +29,12 @@
 <meta property="og:site_name" content="детство">
 <meta property="og:description" content="使用的系统还是win10 64，在这整理下思路及搭建过程。  使用Hexo创建本地博客 给Hexo安装NexT主题 修改外观及配置 在Github创建Repository 发布Hexo到远程GitHub 绑定自定义域名 完善及之后使用">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://5127.oss-cn-shenzhen.aliyuncs.com/github/20200425053953.png">
 <meta property="article:published_time" content="2020-04-24T16:06:49.000Z">
-<meta property="article:modified_time" content="2020-04-25T04:53:45.629Z">
+<meta property="article:modified_time" content="2020-04-25T20:57:06.123Z">
 <meta property="article:author" content="许三">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Github Page">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://5127.oss-cn-shenzhen.aliyuncs.com/github/20200425053953.png">
 
 <link rel="canonical" href="https://www.tucew.com/posts/202004250006.html">
 
@@ -259,109 +257,113 @@
 <li>完善及之后使用</li>
 </ul>
 <a id="more"></a>
-
-<h3 id="使用Hexo创建本地博客"><a href="#使用Hexo创建本地博客" class="headerlink" title="使用Hexo创建本地博客"></a>使用Hexo创建本地博客</h3><p>使用插件查看官网<a href="https://hexo.io/docs/" target="_blank" rel="noopener">文档</a>还是比较容易理解和可靠的。</p>
-<h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><p>使用Hexo之前，需要先安装<a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener">Node.js</a>再安装<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git</a>。</p>
+<h3 id="使用Hexo创建本地博客">使用Hexo创建本地博客</h3>
+<p>使用插件查看官网<a href="https://hexo.io/docs/" target="_blank" rel="noopener">文档</a>还是比较容易理解和可靠的，当前版本4.2.0。</p>
+<h4 id="准备工作">准备工作</h4>
+<p>使用Hexo之前，需要先安装<a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener">Node.js</a>再安装<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git</a>。</p>
 <p>安装完之后，鼠标右键桌面查看是否有 <code>Git Bash Here</code> 图标 ；如果没有的话，参考<a href="https://blog.csdn.net/niu9799/article/details/80755895" target="_blank" rel="noopener">这里</a>解决，因为接下来的命令基本都是在Git Bash里头操作。</p>
 <p>鼠标右键桌面打开Git Bash，输入 <code>npm install hexo-cli -g</code> 回车安装Hexo；输入 <code>hexo -v</code> 验证Hexo是否安装成功，安装成功后先关闭Git Bash。</p>
-<h4 id="创建本地博客"><a href="#创建本地博客" class="headerlink" title="创建本地博客"></a>创建本地博客</h4><p>创建一个存放博客的文件夹，比如在C盘下创建文件夹 <code>blog</code>。</p>
+<h4 id="创建本地博客">创建本地博客</h4>
+<p>创建一个存放博客的文件夹，比如在C盘下创建文件夹 <code>blog</code>。</p>
 <ul>
 <li>右键 <code>blog</code>，打开Git Bash（所在位置显示MINGW64 /c/blog）</li>
 <li>输入 <code>hexo init</code> 将blog文件夹初始化成一个博客文件夹，目录结构如下</li>
 </ul>
-<p><img data-src="https://5127.oss-cn-shenzhen.aliyuncs.com/github/20200425053953.png" alt=""></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">|<span class="comment">-- node_modules</span></span><br><span class="line">|<span class="comment">-- scaffolds</span></span><br><span class="line">|<span class="comment">-- source</span></span><br><span class="line">|<span class="comment">-- themes</span></span><br><span class="line">|<span class="comment">-- .gitignore</span></span><br><span class="line">|<span class="comment">-- _config.yml</span></span><br><span class="line">|<span class="comment">-- package.json</span></span><br><span class="line">|<span class="comment">-- package-lock.json</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>输入 <code>npm install</code> 安装依赖包</li>
 <li>输入 <code>hexo g</code> 生成（generate）网页；目录结构增加了 <code>public文件夹和db.json文件</code>。之后文件有改动的话，都需要重新生成一下</li>
 <li>输入 <code>hexo s</code> 将生成的网页放在本地服务器（server）</li>
-<li>浏览器里输入 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> ， 就可以在本地查看博客了</li>
+<li>浏览器里输入<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>， 就可以在本地查看博客了</li>
 <li>按 <code>Ctrl+C</code> 关闭本地服务器</li>
 </ul>
-<h3 id="给Hexo安装NexT主题"><a href="#给Hexo安装NexT主题" class="headerlink" title="给Hexo安装NexT主题"></a>给Hexo安装NexT主题</h3><p>Hexo主题有很多，这里选用NexT主题。惯例查看NexT<a href="https://theme-next.org/docs/getting-started/" target="_blank" rel="noopener">文档</a>，根据文档说明替换Hexo主题，并使用 <code>hexo clean</code> 清理下缓存。</p>
-<h3 id="修改外观及配置"><a href="#修改外观及配置" class="headerlink" title="修改外观及配置"></a>修改外观及配置</h3><p>主要是修改站点配置文件 <code>blog/_config.yml</code> 和主题配置文件 <code>/blog/themes/next/_config.yml</code>，可以查看官网文档对照修改，每一个配置都了解一下，需要注意的是<strong>“:”之后要加空格</strong>。</p>
-<h4 id="导航栏添加分类和标签栏目"><a href="#导航栏添加分类和标签栏目" class="headerlink" title="导航栏添加分类和标签栏目"></a>导航栏添加分类和标签栏目</h4><ul>
-<li><p>主题配置文件找到 <code>menu</code> 去掉 <code>tags</code> 和 <code>categories</code> 注释</p>
-</li>
-<li><p>使用<strong>创建页面</strong>命令 <code>hexo n page &quot;page name&quot;</code>，分别创建tags和categories两个页面</p>
-</li>
-<li><p>之后在 <code>blog/source/</code> 下多了tags和categories两个文件夹</p>
-</li>
-<li><p>修改 <code>blog/source/tags/index.md</code> 文件</p>
-</li>
+<h3 id="给Hexo安装NexT主题">给Hexo安装NexT主题</h3>
+<p>Hexo主题有很多，这里选用NexT主题。惯例查看NexT<a href="https://theme-next.org/docs/getting-started/" target="_blank" rel="noopener">文档</a>，根据文档说明替换Hexo主题，并使用 <code>hexo clean</code> 清理下缓存，当前版本7.8.0。</p>
+<h3 id="修改外观及配置">修改外观及配置</h3>
+<p>主要是修改站点配置文件 <code>blog/_config.yml</code> 和主题配置文件 <code>/blog/themes/next/_config.yml</code>，可以查看官网文档对照修改，每一个配置都了解一下，需要注意的是<strong>冒号&quot;:&quot;之后要加空格</strong>。</p>
+<h4 id="导航栏添加分类和标签栏目">导航栏添加分类和标签栏目</h4>
+<ul>
+<li>主题配置文件找到 <code>menu</code> 去掉 <code>tags</code> 和 <code>categories</code> 注释</li>
+<li>使用<strong>创建页面</strong>命令 <code>hexo n page &quot;page name&quot;</code>，分别创建tags和categories两个页面</li>
+<li>之后在 <code>blog/source/</code> 下多了tags和categories两个文件夹</li>
+<li>修改 <code>blog/source/tags/index.md</code> 文件</li>
 </ul>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">标签</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2020</span><span class="number">-04</span><span class="number">-23</span> <span class="number">09</span><span class="string">:19:37</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">"tags"</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>修改 <code>blog/source/categories/index.md</code> 文件</li>
 </ul>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">分类</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2020</span><span class="number">-04</span><span class="number">-23</span> <span class="number">09</span><span class="string">:19:55</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">"categories"</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>其它自定义页面类似，添加 <code>menu</code> 没列出的，还需要在语言文件 <code>blog/themes/next/languages/zh-CN.yml</code> 添加对应的中英文</li>
 </ul>
-<h4 id="Front-Matter模板"><a href="#Front-Matter模板" class="headerlink" title="Front-Matter模板"></a>Front-Matter模板</h4><ul>
+<h4 id="Front-Matter模板">Front-Matter模板</h4>
+<ul>
 <li>添加文章时，自动添加更多front-matter内容，修改 <code>blog/scaffolds/post.md</code> 文件</li>
 </ul>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">&#123;&#123;</span> <span class="string">title</span> <span class="string">&#125;&#125;</span></span><br><span class="line"><span class="attr">date:</span> <span class="string">&#123;&#123;</span> <span class="string">date</span> <span class="string">&#125;&#125;</span></span><br><span class="line"><span class="attr">tags:</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>还可以添加置顶、评论等标识</li>
 </ul>
-<h4 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h4><p>使用<strong>新建文章</strong>命令 <code>hexo n [post] &quot;post name&quot;</code> 创建文章，新建的文章存放在 <code>blog/source/_posts</code> 文件夹中，给文章设置标签和分类。</p>
+<h4 id="新建文章">新建文章</h4>
+<p>使用<strong>新建文章</strong>命令 <code>hexo n [post] &quot;post name&quot;</code> 创建文章，新建的文章存放在 <code>blog/source/_posts</code> 文件夹中，给文章设置标签和分类。</p>
 <ul>
 <li>类似Hexo配置文件中的写法</li>
 </ul>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tags:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">前端</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">Hexo</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">HTML</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">JavaScript</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>伪JavaScript数组写法</li>
 </ul>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tags:</span> <span class="string">[前端,Hexo,HTML,JavaScript]</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>多个分类感觉没必要，写法类似，没试过</li>
 </ul>
-<h4 id="404页面"><a href="#404页面" class="headerlink" title="404页面"></a>404页面</h4><p>使用创建页面命令创建404页面，之后修改 <code>blog/source/404/index.md</code> 文件。</p>
+<h4 id="404页面">404页面</h4>
+<p>使用创建页面命令创建404页面，之后修改 <code>blog/source/404/index.md</code> 文件。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="number">404</span> <span class="string">Not</span> <span class="string">Found</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2020</span><span class="number">-04</span><span class="number">-24</span> <span class="number">15</span><span class="string">:54:58</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">/404</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"></span><br><span class="line"><span class="string">抱歉，您要找的页面不存在！</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="永久链接"><a href="#永久链接" class="headerlink" title="永久链接"></a>永久链接</h4><p>对于个人添加文章时间间隔大于1分钟的情况下，下面这种做法还是蛮方便的。修改站点配置文件：</p>
+<h4 id="永久链接">永久链接</h4>
+<p>对于个人添加文章时间间隔大于1分钟的情况下，下面这种做法还是蛮方便的。修改站点配置文件：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">permalink:</span> <span class="string">posts/:year:month:day:hour:minute.html</span></span><br></pre></td></tr></table></figure>
-
-<p>当然网上还是其他做法，安装 <code>hexo-abbrlink</code> 插件（安装包npm找不到了:joy:）；或者添加front-matter标识-如pid，之后手动更改pid的值（每天pid都可以从1开始）。如下：</p>
+<p>当然网上还有其他做法，安装 <code>hexo-abbrlink</code> 插件（安装包npm找不到了😂，依赖于标题）；或者添加front-matter标识-如pid，之后手动更改pid的值（每天pid都可以从1开始）。如下：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">permalink:</span> <span class="string">posts/:year:month:day:pid.html</span></span><br></pre></td></tr></table></figure>
-
-<p>不知道有没有比较好的办法呢。</p>
-<h4 id="自定义样式"><a href="#自定义样式" class="headerlink" title="自定义样式"></a>自定义样式</h4><p>主题配置文件找到 <code>custom_file_path</code>，按需取消注释并根据目录添加相应的文件。</p>
-<h4 id="其它配置"><a href="#其它配置" class="headerlink" title="其它配置"></a>其它配置</h4><p>其它配置，如：搜索、浏览进度、加载进度、pjax、头像、访问统计、社交链接、备案信息、评论等省略。</p>
-<h3 id="在Github创建Repository"><a href="#在Github创建Repository" class="headerlink" title="在Github创建Repository"></a>在Github创建Repository</h3><p>注册Github账号并创建新Repository，Repository name填入username.github.io，待设置完之后就可以通过username.github.io访问。</p>
+<p>不知道有没有比较好的办法？</p>
+<h4 id="自定义样式">自定义样式</h4>
+<p>主题配置文件找到 <code>custom_file_path</code>，按需取消注释并根据目录添加相应的文件。</p>
+<p>注：刚开始改styl源文件的时候，不知道元素在哪个文件里，很不好找。后来想到电脑已经装有VS，用它查找整个解决方案就行了。</p>
+<h4 id="其它配置">其它配置</h4>
+<p>其它配置，如：搜索、浏览进度、加载进度、pjax、头像、访问统计、社交链接、备案信息、评论、代码复制等省略。</p>
+<h3 id="在Github创建Repository">在Github创建Repository</h3>
+<p>注册Github账号并创建新Repository，Repository name填入username.github.io，待设置完之后就可以通过username.github.io访问。</p>
 <p>点击右上角的Setting找到GitHub Pages，Source选择master分支 ，主题随便选个（否则可能会提示GitHub Pages不可用）</p>
-<h3 id="发布Hexo到远程GitHub"><a href="#发布Hexo到远程GitHub" class="headerlink" title="发布Hexo到远程GitHub"></a>发布Hexo到远程GitHub</h3><ul>
+<h3 id="发布Hexo到远程GitHub">发布Hexo到远程GitHub</h3>
+<ul>
 <li>回到Git Bash，输入 <code>npm install hexo-deployer-git --save</code> 安装hexo-deployer-git</li>
 <li>编辑 <code>blog/_config.yml</code></li>
 </ul>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/username/username.github.io.git</span> <span class="comment"># your repository url</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>输入 <code>hexo d</code> 发布，首次如果提示键入用户名和邮箱，就输入之后再执行发布命令；最终得到 <code>INFO Deploy done: git</code> 即为部署成功</li>
 <li>前往username.github.io查看</li>
 </ul>
-<h3 id="绑定自定义域名"><a href="#绑定自定义域名" class="headerlink" title="绑定自定义域名"></a>绑定自定义域名</h3><ul>
+<h3 id="绑定自定义域名">绑定自定义域名</h3>
+<ul>
 <li>输入 <code>ping username.github.io</code> 获取Github Pages的主机的IP地址</li>
 <li>域名解析添加一条A记录，主机为空值@，记录值为刚获取的IP地址</li>
 <li>添加一条CNAME记录，主机为www，记录值为username.github.io</li>
-<li>回到GitHub Pages在自定义域名里输入 <code>domian.com</code> 或者 <code>www.domain.com</code>;如果域名支持HTTPS，则下方的复选框打勾 </li>
-<li>在 <code>blog/source/</code> 下添加一个名为<strong>CNAME</strong>没有任何后缀的文件，文件内容为 <code>domian.com</code> 或者 <code>www.domain.com</code>，这个文件如果没添加的话，每次重新发布都需要再次设置自定义域名</li>
+<li>回到GitHub Pages在自定义域名里输入domian.com或者www.domain.com;如果域名支持HTTPS，则下方的复选框打勾</li>
+<li>在 <code>blog/source/</code> 下添加一个名为<strong>CNAME</strong>没有任何后缀的文件，文件内容为domian.com或者www.domain.com，这个文件如果没添加的话，每次重新发布都需要再次设置自定义域名</li>
 </ul>
-<h3 id="完善及常用命令"><a href="#完善及常用命令" class="headerlink" title="完善及常用命令"></a>完善及常用命令</h3><ul>
+<h3 id="完善及常用命令">完善及常用命令</h3>
+<ul>
 <li>Hexo建完文章自动打开Typora编辑器</li>
 </ul>
 <p>在 <code>blog/</code> 下添加 <code>scripts</code> 文件夹，文件夹里头添加 <code>auto_open.js</code> （名称随便），代码如下</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> spawn = <span class="built_in">require</span>(<span class="string">'child_process'</span>).exec;</span><br><span class="line">hexo.on(<span class="string">'new'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">  spawn(<span class="string">'start  "C:\Program Files\Typora\Typora.exe" '</span> + data.path); <span class="comment">//编辑器的目标路径</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>使用 <code>&lt;!-- more --&gt;</code> 注释控制文章在首页要显示的内容</li>
-<li>Markdown使用emoji表情，表情<a href="https://www.cnblogs.com/Jacob98/p/11261315.html" target="_blank" rel="noopener">代码符号</a>链接</li>
-<li>待博客完善后，之后添加文章的流程大概是：<ul>
+<li>Hexo默认的Markdown渲染引擎hexo-renderer-marked改为hexo-renderer-markdown-it并添加表情支持，具体参考<a href="https://hasaik.com/posts/9b280ea3.html" target="_blank" rel="noopener">这里</a></li>
+<li>渲染引擎更换后，使用 <code>&lt;br&gt;</code> 换行，也可以设置链接不自动生成</li>
+<li>待博客完善后，之后添加文章的流程大概是：
+<ul>
 <li>桌面右击启动Git Bash</li>
 <li>输入 <code>cd /c/blog</code> 定位到博客目录，也可以直接在博客目录右击启动Git Bash</li>
 <li>执行新建文章命令</li>
@@ -371,12 +373,12 @@
 </li>
 <li>常用命令</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">"post name"</span> <span class="comment">#新建文章 有空格需要加双引号</span></span><br><span class="line">hexo new page <span class="string">"page name"</span> <span class="comment">#新建页面 有空格需要加双引号</span></span><br><span class="line">hexo generate <span class="comment">#生成静态页面至public目录</span></span><br><span class="line">hexo server <span class="comment">#开启预览访问端口（默认端口4000，'ctrl + c'关闭server）</span></span><br><span class="line">hexo deploy <span class="comment">#将.deploy目录部署到GitHub</span></span><br><span class="line">hexo version  <span class="comment">#查看Hexo的版本</span></span><br><span class="line">hexo deploy -g  <span class="comment">#生成加部署</span></span><br><span class="line">hexo server -g  <span class="comment">#生成加预览</span></span><br><span class="line">hexo c &amp;&amp; hexo g &amp;&amp; hexo s <span class="comment">#清理缓存并生成加预览</span></span><br><span class="line">命令的简写</span><br><span class="line">hexo n == hexo new</span><br><span class="line">hexo c == hexo clean</span><br><span class="line">hexo g == hexo generate</span><br><span class="line">hexo s == hexo server</span><br><span class="line">hexo d == hexo deploy</span><br></pre></td></tr></table></figure>
-
-
-
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">"post name"</span> <span class="comment">#新建文章 有空格需要加双引号</span></span><br><span class="line">hexo new page <span class="string">"page name"</span> <span class="comment">#新建页面</span></span><br><span class="line">hexo new draft <span class="string">"draft name"</span> <span class="comment">#新建草稿</span></span><br><span class="line">hexo generate <span class="comment">#生成静态页面至public目录</span></span><br><span class="line">hexo server <span class="comment">#开启预览访问端口（默认端口4000，'ctrl + c'关闭server）</span></span><br><span class="line">hexo deploy <span class="comment">#将.deploy目录部署到GitHub</span></span><br><span class="line">hexo version  <span class="comment">#查看Hexo的版本</span></span><br><span class="line">hexo deploy -g  <span class="comment">#生成加部署</span></span><br><span class="line">hexo server -g  <span class="comment">#生成加预览</span></span><br><span class="line">hexo clean <span class="comment">#清理缓存也即是删除public文件夹和db.json</span></span><br><span class="line">命令的简写</span><br><span class="line">hexo n == hexo new</span><br><span class="line">hexo g == hexo generate</span><br><span class="line">hexo s == hexo server</span><br><span class="line">hexo d == hexo deploy</span><br></pre></td></tr></table></figure>
+<br>
 <p><strong>参考链接</strong></p>
-<p><a href="https://eirunye.github.io/categories/Hexo/" target="_blank" rel="noopener">https://eirunye.github.io/categories/Hexo/</a><br><a href="https://www.jianshu.com/p/efbeddc5eb19" target="_blank" rel="noopener">https://www.jianshu.com/p/efbeddc5eb19</a><br><a href="https://blog.csdn.net/jiunian_2761/article/details/97388745" target="_blank" rel="noopener">https://blog.csdn.net/jiunian_2761/article/details/97388745</a></p>
+<p><a href="https://eirunye.github.io/categories/Hexo/" target="_blank" rel="noopener">https://eirunye.github.io/categories/Hexo/</a><br>
+<a href="https://www.jianshu.com/p/efbeddc5eb19" target="_blank" rel="noopener">https://www.jianshu.com/p/efbeddc5eb19</a><br>
+<a href="https://blog.csdn.net/jiunian_2761/article/details/97388745" target="_blank" rel="noopener">https://blog.csdn.net/jiunian_2761/article/details/97388745</a></p>
 
     </div>
 
