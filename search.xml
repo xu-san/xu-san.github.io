@@ -11,7 +11,7 @@
 <li>在Github创建Repository</li>
 <li>发布Hexo到远程GitHub</li>
 <li>绑定自定义域名</li>
-<li>完善及之后使用</li>
+<li>完善及常用命令</li>
 </ul>
 <a id="more"></a>
 <h3 id="使用Hexo创建本地博客">使用Hexo创建本地博客</h3>
@@ -118,7 +118,7 @@
 <ul>
 <li>使用 <code>&lt;!-- more --&gt;</code> 注释控制文章在首页要显示的内容</li>
 <li>Hexo默认的Markdown渲染引擎hexo-renderer-marked改为hexo-renderer-markdown-it并添加表情支持，具体参考<a href="https://hasaik.com/posts/9b280ea3.html" target="_blank" rel="noopener">这里</a></li>
-<li>渲染引擎更换后，使用 <code>&lt;br&gt;</code> 换行，也可以设置链接不自动生成</li>
+<li>渲染引擎更换后，可以设置 <code>&lt;br&gt;</code> 换行，也可以设置链接不自动生成</li>
 <li>待博客完善后，之后添加文章的流程大概是：
 <ul>
 <li>桌面右击启动Git Bash</li>
