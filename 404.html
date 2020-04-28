@@ -405,6 +405,9 @@ var pjax = new Pjax({
 });
 
 window.addEventListener('pjax:success', () => {
+  if(window.matchMedia('(max-width: 767px)').matches && document.querySelector('.toggle').classList.contains('toggle-close')){
+    document.querySelector('.toggle').click();
+  }
   document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
     var code = element.text || element.textContent || element.innerHTML || '';
     var parent = element.parentNode;
