@@ -1168,7 +1168,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #f6f938;
+  background: #ff0814;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1224,7 +1224,6 @@ pre .javascript .function {
 @media (max-width: 767px) {
   #sidebar-dimmer {
     background: #000;
-    display: block;
     height: 100%;
     left: 100%;
     opacity: 0;
