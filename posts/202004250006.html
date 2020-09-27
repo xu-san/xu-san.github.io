@@ -30,7 +30,7 @@
 <meta property="og:description" content="使用的系统还是win10 64，在这整理下思路及搭建过程。  使用Hexo创建本地博客 给Hexo安装NexT主题 修改外观及配置 在Github创建Repository 发布Hexo到远程GitHub 绑定自定义域名 完善及常用命令">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-24T16:06:49.000Z">
-<meta property="article:modified_time" content="2020-04-26T17:03:22.403Z">
+<meta property="article:modified_time" content="2020-09-27T10:46:16.990Z">
 <meta property="article:author" content="许三">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Github Page">
@@ -280,7 +280,7 @@
 <h3 id="给Hexo安装NexT主题">给Hexo安装NexT主题</h3>
 <p>Hexo主题有很多，这里选用NexT主题。惯例查看NexT<a href="https://theme-next.org/docs/getting-started/" target="_blank" rel="noopener">文档</a>，根据文档说明替换Hexo主题，并使用 <code>hexo clean</code> 清理下缓存，当前版本7.8.0。</p>
 <h3 id="修改外观及配置">修改外观及配置</h3>
-<p>主要是修改站点配置文件 <code>blog/_config.yml</code> 和主题配置文件 <code>/blog/themes/next/_config.yml</code>，可以查看官网文档对照修改，每一个配置都了解一下，需要注意的是<strong>冒号&quot;:&quot;之后要加空格</strong>。</p>
+<p>主要是修改站点配置文件 <code>blog/_config.yml</code> 和主题配置文件 <code>/blog/themes/next/_config.yml</code>，可以查看官网文档或<a href="http://theme-next.iissnan.com/" target="_blank" rel="noopener">NexT使用文档</a>对照修改，每一个配置都了解一下，需要注意的是<strong>冒号&quot;:&quot;之后要加空格</strong>。</p>
 <h4 id="导航栏添加分类和标签栏目">导航栏添加分类和标签栏目</h4>
 <ul>
 <li>主题配置文件找到 <code>menu</code> 去掉 <code>tags</code> 和 <code>categories</code> 注释</li>
@@ -329,6 +329,8 @@
 <h4 id="自定义样式">自定义样式</h4>
 <p>主题配置文件找到 <code>custom_file_path</code>，按需取消注释并根据目录添加相应的文件。</p>
 <p>注：刚开始改styl源文件的时候，不知道元素在哪个文件里，很不好找。后来想到电脑已经装有VS，用它查找整个解决方案就行了。</p>
+<h4 id="博文加密">博文加密</h4>
+<p>使用<a href="https://github.com/MikeCoder/hexo-blog-encrypt" target="_blank" rel="noopener">hexo-blog-encrypt</a>插件</p>
 <h4 id="其它配置">其它配置</h4>
 <p>其它配置，如：搜索、浏览进度、加载进度、pjax、头像、访问统计、社交链接、备案信息、评论、代码复制等省略。</p>
 <h3 id="在Github创建Repository">在Github创建Repository</h3>
@@ -401,7 +403,10 @@
     <a href="/posts/202004230126.html" rel="prev" title="使用Typora+PicGo写文章（win10 64）">
       <i class="fa fa-chevron-left"></i> 使用Typora+PicGo写文章（win10 64）
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/posts/202009271848.html" rel="next" title="ECS部署">
+      ECS部署 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -460,7 +465,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Hexo创建本地博客"><span class="nav-number">1.</span> <span class="nav-text">使用Hexo创建本地博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#准备工作"><span class="nav-number">1.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建本地博客"><span class="nav-number">1.2.</span> <span class="nav-text">创建本地博客</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给Hexo安装NexT主题"><span class="nav-number">2.</span> <span class="nav-text">给Hexo安装NexT主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改外观及配置"><span class="nav-number">3.</span> <span class="nav-text">修改外观及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#导航栏添加分类和标签栏目"><span class="nav-number">3.1.</span> <span class="nav-text">导航栏添加分类和标签栏目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Front-Matter模板"><span class="nav-number">3.2.</span> <span class="nav-text">Front-Matter模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建文章"><span class="nav-number">3.3.</span> <span class="nav-text">新建文章</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#404页面"><span class="nav-number">3.4.</span> <span class="nav-text">404页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#永久链接"><span class="nav-number">3.5.</span> <span class="nav-text">永久链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义样式"><span class="nav-number">3.6.</span> <span class="nav-text">自定义样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它配置"><span class="nav-number">3.7.</span> <span class="nav-text">其它配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在Github创建Repository"><span class="nav-number">4.</span> <span class="nav-text">在Github创建Repository</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布Hexo到远程GitHub"><span class="nav-number">5.</span> <span class="nav-text">发布Hexo到远程GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绑定自定义域名"><span class="nav-number">6.</span> <span class="nav-text">绑定自定义域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完善及常用命令"><span class="nav-number">7.</span> <span class="nav-text">完善及常用命令</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Hexo创建本地博客"><span class="nav-number">1.</span> <span class="nav-text">使用Hexo创建本地博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#准备工作"><span class="nav-number">1.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建本地博客"><span class="nav-number">1.2.</span> <span class="nav-text">创建本地博客</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给Hexo安装NexT主题"><span class="nav-number">2.</span> <span class="nav-text">给Hexo安装NexT主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改外观及配置"><span class="nav-number">3.</span> <span class="nav-text">修改外观及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#导航栏添加分类和标签栏目"><span class="nav-number">3.1.</span> <span class="nav-text">导航栏添加分类和标签栏目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Front-Matter模板"><span class="nav-number">3.2.</span> <span class="nav-text">Front-Matter模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建文章"><span class="nav-number">3.3.</span> <span class="nav-text">新建文章</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#404页面"><span class="nav-number">3.4.</span> <span class="nav-text">404页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#永久链接"><span class="nav-number">3.5.</span> <span class="nav-text">永久链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义样式"><span class="nav-number">3.6.</span> <span class="nav-text">自定义样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#博文加密"><span class="nav-number">3.7.</span> <span class="nav-text">博文加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它配置"><span class="nav-number">3.8.</span> <span class="nav-text">其它配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在Github创建Repository"><span class="nav-number">4.</span> <span class="nav-text">在Github创建Repository</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布Hexo到远程GitHub"><span class="nav-number">5.</span> <span class="nav-text">发布Hexo到远程GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绑定自定义域名"><span class="nav-number">6.</span> <span class="nav-text">绑定自定义域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完善及常用命令"><span class="nav-number">7.</span> <span class="nav-text">完善及常用命令</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -476,7 +481,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -489,7 +494,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
