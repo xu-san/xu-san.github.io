@@ -30,7 +30,7 @@
 <meta property="og:description" content="使用的系统还是win10 64，在这整理下思路及搭建过程。  使用Hexo创建本地博客 给Hexo安装NexT主题 修改外观及配置 在Github创建Repository 发布Hexo到远程GitHub 绑定自定义域名 完善及常用命令">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-24T16:06:49.000Z">
-<meta property="article:modified_time" content="2020-09-27T10:46:16.990Z">
+<meta property="article:modified_time" content="2020-09-27T11:41:49.853Z">
 <meta property="article:author" content="许三">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Github Page">
@@ -331,6 +331,7 @@
 <p>注：刚开始改styl源文件的时候，不知道元素在哪个文件里，很不好找。后来想到电脑已经装有VS，用它查找整个解决方案就行了。</p>
 <h4 id="博文加密">博文加密</h4>
 <p>使用<a href="https://github.com/MikeCoder/hexo-blog-encrypt" target="_blank" rel="noopener">hexo-blog-encrypt</a>插件</p>
+<p>注：此插件与pjax冲突，参考<a href="https://www.xiaole88.com/post/55609.html" target="_blank" rel="noopener">解决方案</a></p>
 <h4 id="其它配置">其它配置</h4>
 <p>其它配置，如：搜索、浏览进度、加载进度、pjax、头像、访问统计、社交链接、备案信息、评论、代码复制等省略。</p>
 <h3 id="在Github创建Repository">在Github创建Repository</h3>
@@ -575,24 +576,49 @@
 <script src="/js/next-boot.js"></script>
 
   <script>
-var pjax = new Pjax({
+  var pjax = new Pjax({
   selectors: [
-    'head title',
-    '#page-configurations',
-    '.content-wrap',
-    '.post-toc-wrap',
-    '.languages',
-    '#pjax'
+  'head title',
+  '#page-configurations',
+  '.content-wrap',
+  '.post-toc-wrap',
+  '.languages',
+  '#pjax'
   ],
   switches: {
-    '.post-toc-wrap': Pjax.switches.innerHTML
+  '.post-toc-wrap': Pjax.switches.innerHTML
   },
   analytics: false,
   cacheBust: false,
   scrollTo : !CONFIG.bookmark.enable
-});
+  });
 
-window.addEventListener('pjax:success', () => {
+  //添加以下代码
+  var dynamicLoading = {
+  css: function(path){
+  if(!path || path.length === 0){
+  throw new Error('argument "path" is required !');
+  }
+  var head = document.getElementsByTagName('head')[0];
+  var link = document.createElement('link');
+  link.href = path;
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  head.appendChild(link);
+  },
+  js: function(path){
+  if(!path || path.length === 0){
+  throw new Error('argument "path" is required !');
+  }
+  var head = document.getElementsByTagName('head')[0];
+  var script = document.createElement('script');
+  script.src = path;
+  script.type = 'text/javascript';
+  head.appendChild(script);
+  }
+  }
+
+  window.addEventListener('pjax:success', () => {
   if(window.matchMedia('(max-width: 767px)').matches && document.querySelector('.toggle').classList.contains('toggle-close')){
     document.querySelector('.toggle').click();
     scrollTo(0,0);
@@ -627,14 +653,23 @@ window.addEventListener('pjax:success', () => {
   NexT.boot.refresh();
   // Define Motion Sequence & Bootstrap Motion.
   if (CONFIG.motion.enable) {
-    NexT.motion.integrator
-      .init()
-      .add(NexT.motion.middleWares.subMenu)
-      .add(NexT.motion.middleWares.postList)
-      .bootstrap();
+  NexT.motion.integrator
+  .init()
+  .add(NexT.motion.middleWares.subMenu)
+  .add(NexT.motion.middleWares.postList)
+  .bootstrap();
   }
   NexT.utils.updateSidebarPosition();
-});
+
+  // 如果存在 博客加密
+  if(document.getElementById("hexo-blog-encrypt")){
+  //动态加载 CSS 文件
+  dynamicLoading.css("/css/blog-encrypt.css");
+  //动态加载 JS 文件
+  dynamicLoading.js("/lib/blog-encrypt.js");
+  }
+
+  });
 </script>
 
 

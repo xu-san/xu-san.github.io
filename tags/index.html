@@ -393,24 +393,49 @@
 <script src="/js/next-boot.js"></script>
 
   <script>
-var pjax = new Pjax({
+  var pjax = new Pjax({
   selectors: [
-    'head title',
-    '#page-configurations',
-    '.content-wrap',
-    '.post-toc-wrap',
-    '.languages',
-    '#pjax'
+  'head title',
+  '#page-configurations',
+  '.content-wrap',
+  '.post-toc-wrap',
+  '.languages',
+  '#pjax'
   ],
   switches: {
-    '.post-toc-wrap': Pjax.switches.innerHTML
+  '.post-toc-wrap': Pjax.switches.innerHTML
   },
   analytics: false,
   cacheBust: false,
   scrollTo : !CONFIG.bookmark.enable
-});
+  });
 
-window.addEventListener('pjax:success', () => {
+  //添加以下代码
+  var dynamicLoading = {
+  css: function(path){
+  if(!path || path.length === 0){
+  throw new Error('argument "path" is required !');
+  }
+  var head = document.getElementsByTagName('head')[0];
+  var link = document.createElement('link');
+  link.href = path;
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  head.appendChild(link);
+  },
+  js: function(path){
+  if(!path || path.length === 0){
+  throw new Error('argument "path" is required !');
+  }
+  var head = document.getElementsByTagName('head')[0];
+  var script = document.createElement('script');
+  script.src = path;
+  script.type = 'text/javascript';
+  head.appendChild(script);
+  }
+  }
+
+  window.addEventListener('pjax:success', () => {
   if(window.matchMedia('(max-width: 767px)').matches && document.querySelector('.toggle').classList.contains('toggle-close')){
     document.querySelector('.toggle').click();
     scrollTo(0,0);
@@ -445,14 +470,23 @@ window.addEventListener('pjax:success', () => {
   NexT.boot.refresh();
   // Define Motion Sequence & Bootstrap Motion.
   if (CONFIG.motion.enable) {
-    NexT.motion.integrator
-      .init()
-      .add(NexT.motion.middleWares.subMenu)
-      .add(NexT.motion.middleWares.postList)
-      .bootstrap();
+  NexT.motion.integrator
+  .init()
+  .add(NexT.motion.middleWares.subMenu)
+  .add(NexT.motion.middleWares.postList)
+  .bootstrap();
   }
   NexT.utils.updateSidebarPosition();
-});
+
+  // 如果存在 博客加密
+  if(document.getElementById("hexo-blog-encrypt")){
+  //动态加载 CSS 文件
+  dynamicLoading.css("/css/blog-encrypt.css");
+  //动态加载 JS 文件
+  dynamicLoading.js("/lib/blog-encrypt.js");
+  }
+
+  });
 </script>
 
 

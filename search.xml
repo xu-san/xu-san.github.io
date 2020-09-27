@@ -96,6 +96,7 @@
 <p>注：刚开始改styl源文件的时候，不知道元素在哪个文件里，很不好找。后来想到电脑已经装有VS，用它查找整个解决方案就行了。</p>
 <h4 id="博文加密">博文加密</h4>
 <p>使用<a href="https://github.com/MikeCoder/hexo-blog-encrypt" target="_blank" rel="noopener">hexo-blog-encrypt</a>插件</p>
+<p>注：此插件与pjax冲突，参考<a href="https://www.xiaole88.com/post/55609.html" target="_blank" rel="noopener">解决方案</a></p>
 <h4 id="其它配置">其它配置</h4>
 <p>其它配置，如：搜索、浏览进度、加载进度、pjax、头像、访问统计、社交链接、备案信息、评论、代码复制等省略。</p>
 <h3 id="在Github创建Repository">在Github创建Repository</h3>
