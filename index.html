@@ -303,18 +303,156 @@
 <h4 id="Elasticsearch">Elasticsearch</h4>
 <p>先设置系统的环境变量</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">JAVA_HOME = ElasticSearch安装目录\jdk\    <span class="comment">#例如C:\Setup\ELK\elasticsearch-7.8.0\jdk\</span></span><br><span class="line">CLASSPATH = %JAVA_HOME%\lib;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar</span><br></pre></td></tr></table></figure>
-<p>运行<strong>bin</strong>文件夹下的 <code>elasticsearch.bat</code> 文件，可以直接右键以管理员身份运行；也可以使用windows命令行，定位到安装目录（打开命令行自动定位到用户名下，需要回退到c盘，回退命令 <code>cd..</code>）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PS C:\Users\96839&gt; <span class="built_in">cd</span>..</span><br><span class="line">PS C:\Users&gt; <span class="built_in">cd</span>..</span><br><span class="line">PS C:\&gt; Setup\ELK\elasticsearch-7.8.0\bin\elasticsearch.bat</span><br></pre></td></tr></table></figure>
-<p>然后在浏览器中输入 http://localhost:9200 就可以看到一个json文本</p>
-<p>如果服务器内存小的话，需要把内容改小，设置为机器内存的一半，打开<code>config/jvm.options</code>文件，将Xms1g和Xmx1g改为Xms512m和Xmx512m（<code>elasticsearch.bat</code> 运行出错或闪屏多半是这厮）</p>
-<p>把es注册成服务启动，摆脱关闭cmd就结束es。可以直接右键 <code>elasticsearch-service.bat</code> 文件或者执行如下命令，之后就类似开关mysql服务</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PS C:\&gt; C:\Setup\ELK\elasticsearch-7.8.0\bin\elasticsearch-service.bat install</span><br></pre></td></tr></table></figure>
-<p>增加ik分词器，<a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="noopener">git地址</a></p>
-<p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html" target="_blank" rel="noopener">Elasticsearch: 权威指南</a></p>
-<h4 id="Kibana">Kibana</h4>
-<p>运行<strong>bin</strong>文件夹下的 <code>kibana.bat</code> 文件，成功后在浏览器中输入 http://localhost:5601 就可以可视化管理Elasticsearch</p>
-<p>部分api实例</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#ctrl+enter发送请求</span></span><br><span class="line">GET /</span><br><span class="line"></span><br><span class="line">GET _cat</span><br><span class="line"></span><br><span class="line">GET _cat/plugins</span><br><span class="line"></span><br><span class="line">GET _cat/indices</span><br><span class="line"></span><br><span class="line"><span class="comment">#删除索引</span></span><br><span class="line">DELETE learn_sample</span><br><span class="line"></span><br><span class="line"><span class="comment">#查询</span></span><br><span class="line">GET learn_sample</span><br><span class="line"></span><br><span class="line">GET learn_sample/_search</span><br><span class="line"></span><br><span class="line">GET learn_sample/_doc/1</span><br><span class="line"></span><br><span class="line"><span class="comment">#添加文档</span></span><br><span class="line">POST learn_sample/_doc/1</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"username"</span>:<span class="string">"张三"</span>,</span><br><span class="line">  <span class="string">"age"</span>:16,</span><br><span class="line">  <span class="string">"gender"</span>:<span class="string">"男"</span>,</span><br><span class="line">  <span class="string">"about"</span>:<span class="string">"this is my info"</span>,</span><br><span class="line">  <span class="string">"addrs"</span>:[<span class="string">"甘肃"</span>,<span class="string">"陕西"</span>,<span class="string">"兰州"</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#query修改文档</span></span><br><span class="line">POST learn_sample/_update_by_query</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"script"</span>: &#123;</span><br><span class="line">    <span class="string">"source"</span>:<span class="string">"ctx._source.age=params.age;ctx._source.about=params.about"</span>,</span><br><span class="line">    <span class="string">"lang"</span>:<span class="string">"painless"</span>,</span><br><span class="line">    <span class="string">"params"</span>:&#123;</span><br><span class="line">      <span class="string">"age"</span>:20,</span><br><span class="line">      <span class="string">"about"</span>:<span class="string">"这是我的信息"</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"query"</span>: &#123;</span><br><span class="line">    <span class="string">"match"</span>: &#123;</span><br><span class="line">      <span class="string">"username"</span>: <span class="string">"张三"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#批量操作</span></span><br><span class="line">POST _bulk</span><br><span class="line">&#123;<span class="string">"index"</span>:&#123;<span class="string">"_index"</span>:<span class="string">"learn_sample"</span>, <span class="string">"_id"</span> : <span class="string">"1"</span>&#125;&#125;</span><br><span class="line">&#123;<span class="string">"username"</span>:<span class="string">"张华"</span>,<span class="string">"age"</span>:16,<span class="string">"gender"</span>:<span class="string">"男"</span>,<span class="string">"about"</span>:<span class="string">"中华人名共和国"</span>&#125;</span><br><span class="line">&#123;<span class="string">"index"</span>:&#123;<span class="string">"_index"</span>:<span class="string">"learn_sample"</span>, <span class="string">"_id"</span> : <span class="string">"2"</span>&#125;&#125;</span><br><span class="line">&#123;<span class="string">"username"</span> : <span class="string">"秦雪"</span>,<span class="string">"age"</span> : 17,<span class="string">"gender"</span> : <span class="string">"女"</span>,<span class="string">"about"</span> : <span class="string">"我的名字叫秦雪"</span>&#125;</span><br><span class="line">&#123;<span class="string">"index"</span>:&#123;<span class="string">"_index"</span>:<span class="string">"learn_sample"</span>, <span class="string">"_id"</span> : <span class="string">"3"</span>&#125;&#125;</span><br><span class="line">&#123;<span class="string">"username"</span> : <span class="string">"小丽丽"</span>,<span class="string">"age"</span> : 16,<span class="string">"gender"</span> : <span class="string">"女"</span>,<span class="string">"about"</span> : <span class="string">"我不叫小丽丽"</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看设置</span></span><br><span class="line">GET learn_sample/_settings</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看映射</span></span><br><span class="line">GET learn_sample/_mapping</span><br><span class="line"></span><br><span class="line"><span class="comment">#定义映射</span></span><br><span class="line">PUT learn_sample</span><br><span class="line"></span><br><span class="line">PUT learn_sample/_mapping</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"properties"</span> : &#123;</span><br><span class="line">        <span class="string">"about"</span> : &#123;</span><br><span class="line">          <span class="string">"type"</span> : <span class="string">"text"</span>,</span><br><span class="line">          <span class="string">"analyzer"</span>:<span class="string">"ik_max_word"</span>,</span><br><span class="line">          <span class="string">"fields"</span> : &#123;</span><br><span class="line">            <span class="string">"keyword"</span> : &#123;</span><br><span class="line">              <span class="string">"type"</span> : <span class="string">"keyword"</span>,</span><br><span class="line">              <span class="string">"ignore_above"</span> : 256</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">"age"</span> : &#123;</span><br><span class="line">          <span class="string">"type"</span> : <span class="string">"integer"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">"gender"</span> : &#123;</span><br><span class="line">          <span class="string">"type"</span> : <span class="string">"keyword"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">"username"</span> : &#123;</span><br><span class="line">          <span class="string">"type"</span> : <span class="string">"text"</span>,</span><br><span class="line">          <span class="string">"fields"</span> : &#123;</span><br><span class="line">            <span class="string">"keyword"</span> : &#123;</span><br><span class="line">              <span class="string">"type"</span> : <span class="string">"keyword"</span>,</span><br><span class="line">              <span class="string">"ignore_above"</span> : 256</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看总数</span></span><br><span class="line">GET learn_sample/_count</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改单个文档</span></span><br><span class="line">POST learn_sample/_update/3</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"doc"</span>: &#123; <span class="string">"username"</span>: <span class="string">"丽丽student"</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#查询</span></span><br><span class="line">GET learn_sample/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"query"</span>: &#123;</span><br><span class="line">    <span class="string">"match"</span>: &#123;</span><br><span class="line">      <span class="string">"about"</span>: <span class="string">"我爱中华"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"highlight"</span>: &#123;</span><br><span class="line">    <span class="string">"fields"</span>: &#123;</span><br><span class="line">      <span class="string">"about"</span>: &#123;</span><br><span class="line">        </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"sort"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"age"</span>: &#123;</span><br><span class="line">        <span class="string">"order"</span>: <span class="string">"asc"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">GET learn_sample/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"size"</span>: 0, </span><br><span class="line">  <span class="string">"query"</span>: &#123;</span><br><span class="line">    <span class="string">"bool"</span>: &#123;</span><br><span class="line">      <span class="string">"must"</span>: [</span><br><span class="line">        &#123; <span class="string">"match_phrase"</span>: &#123; <span class="string">"about"</span>:  <span class="string">"中华"</span> &#125;&#125;,</span><br><span class="line">        &#123; <span class="string">"match"</span>: &#123; <span class="string">"gender"</span>: <span class="string">"男"</span>   &#125;&#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"highlight"</span>: &#123;</span><br><span class="line">    <span class="string">"fields"</span>: &#123;</span><br><span class="line">      <span class="string">"about"</span>: &#123;</span><br><span class="line">        </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"sort"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"age"</span>: &#123;</span><br><span class="line">        <span class="string">"order"</span>: <span class="string">"asc"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#query删除</span></span><br><span class="line">POST learn_sample/_delete_by_query</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"query"</span>: &#123;</span><br><span class="line">    <span class="string">"match"</span>: &#123;</span><br><span class="line">      <span class="string">"username"</span>: <span class="string">"阿毛"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#查询内存</span></span><br><span class="line">GET _cat/segments/learn_sample?v&amp;h=si,sm</span><br><span class="line"></span><br><span class="line">GET learn_sample/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"query"</span>: &#123;</span><br><span class="line">    <span class="string">"multi_match"</span>: &#123;</span><br><span class="line">      <span class="string">"query"</span>: <span class="string">"my student"</span>,</span><br><span class="line">      <span class="string">"fields"</span>: [<span class="string">"username"</span>,<span class="string">"about"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"highlight"</span>: &#123;</span><br><span class="line">    <span class="string">"fields"</span>: &#123;</span><br><span class="line">      <span class="string">"about"</span>: &#123;&#125;,</span><br><span class="line">      <span class="string">"username"</span>: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"sort"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"age"</span>: &#123;</span><br><span class="line">        <span class="string">"order"</span>: <span class="string">"asc"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#查询多个索引</span></span><br><span class="line">GET learn_sample,kibana_sample_data_ecommerce/_search</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"from"</span>: 0, </span><br><span class="line">  <span class="string">"size"</span>: 10,</span><br><span class="line">  <span class="string">"query"</span>: &#123;</span><br><span class="line">    <span class="string">"multi_match"</span>: &#123;</span><br><span class="line">      <span class="string">"query"</span>: <span class="string">"my student"</span>,</span><br><span class="line">      <span class="string">"fields"</span>: [<span class="string">"username"</span>,<span class="string">"about"</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看解析</span></span><br><span class="line">GET _analyze</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">"analyzer"</span>: <span class="string">"ik_max_word"</span>, </span><br><span class="line">  <span class="string">"text"</span>: [<span class="string">"中华人名共和国"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/202006281713.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.tucew.com/posts/202006211656.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="许三">
+      <meta itemprop="description" content="人生无法做到完美，我们就尽力好了，剩下的交给命运。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="детство">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/202006211656.html" class="post-title-link" itemprop="url">CSS样式记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              
+
+              <time title="创建时间 2020-06-21 16:56:00" itemprop="dateCreated datePublished" datetime="2020-06-21T16:56:00+08:00">2020-06-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/frontend/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          该篇文章博主不想让其他人看见哟~
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/202006211656.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.tucew.com/posts/202005191919.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="许三">
+      <meta itemprop="description" content="人生无法做到完美，我们就尽力好了，剩下的交给命运。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="детство">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/202005191919.html" class="post-title-link" itemprop="url">WebUploader多图上传，html5上传带进度条、图片删除、拖拽排序及初始化图片回显（jquery）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              
+
+              <time title="创建时间 2020-05-19 19:19:30" itemprop="dateCreated datePublished" datetime="2020-05-19T19:19:30+08:00">2020-05-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/frontend/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          该篇文章博主不想让其他人看见哟~
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/202005191919.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -533,148 +671,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/202004220303.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.tucew.com/posts/201909290319.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="许三">
-      <meta itemprop="description" content="人生无法做到完美，我们就尽力好了，剩下的交给命运。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="детство">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/201909290319.html" class="post-title-link" itemprop="url">WebUploader多图上传，html5上传带进度条、图片删除、拖拽排序及初始化图片回显（jquery）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              
-
-              <time title="创建时间 2019-09-29 03:19:51" itemprop="dateCreated datePublished" datetime="2019-09-29T03:19:51+08:00">2019-09-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/frontend/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          该篇文章博主不想让其他人看见哟~
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/201909290319.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.tucew.com/posts/201909290316.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="许三">
-      <meta itemprop="description" content="人生无法做到完美，我们就尽力好了，剩下的交给命运。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="детство">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/201909290316.html" class="post-title-link" itemprop="url">CSS样式记录</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              
-
-              <time title="创建时间 2019-09-29 03:16:00" itemprop="dateCreated datePublished" datetime="2019-09-29T03:16:00+08:00">2019-09-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/frontend/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          该篇文章博主不想让其他人看见哟~
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/201909290316.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -939,6 +935,7 @@
   .add(NexT.motion.middleWares.postList)
   .bootstrap();
   }
+
   NexT.utils.updateSidebarPosition();
 
   // 如果存在 博客加密

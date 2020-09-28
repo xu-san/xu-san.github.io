@@ -30,7 +30,7 @@
 <meta property="og:description" content="使用的系统还是win10 64，在这整理下思路及搭建过程。  使用Hexo创建本地博客 给Hexo安装NexT主题 修改外观及配置 在Github创建Repository 发布Hexo到远程GitHub 绑定自定义域名 完善及常用命令">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-24T16:06:49.000Z">
-<meta property="article:modified_time" content="2020-09-27T11:41:49.853Z">
+<meta property="article:modified_time" content="2020-09-28T09:02:02.171Z">
 <meta property="article:author" content="许三">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Github Page">
@@ -331,7 +331,8 @@
 <p>注：刚开始改styl源文件的时候，不知道元素在哪个文件里，很不好找。后来想到电脑已经装有VS，用它查找整个解决方案就行了。</p>
 <h4 id="博文加密">博文加密</h4>
 <p>使用<a href="https://github.com/MikeCoder/hexo-blog-encrypt" target="_blank" rel="noopener">hexo-blog-encrypt</a>插件</p>
-<p>注：此插件与pjax冲突，参考<a href="https://www.xiaole88.com/post/55609.html" target="_blank" rel="noopener">解决方案</a></p>
+<p>注：此插件与pjax冲突，参考<a href="https://www.xiaole88.com/post/55609.html" target="_blank" rel="noopener">解决方案</a>；代码块不能水平滚动，可以修改 <code>themes\next\source\css\_common\scaffolding\highlight\highlight.styl $code-block添加overflow:auto</code> 也可以直接在博文下方添加回调函数，如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Callback Test</span><br><span class="line">date: 2019-12-21 11:54:07</span><br><span class="line">tags:</span><br><span class="line">    - Encrypted</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">This is a blog to test Callback functions. You just need to add code at the last of your post like following:</span><br><span class="line"></span><br><span class="line">It will be called after the blog decrypted.</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 添加一个 script tag 与代码在文章末尾.</span></span></span><br><span class="line">    NexT.utils.wrapTableWithBox();</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h4 id="其它配置">其它配置</h4>
 <p>其它配置，如：搜索、浏览进度、加载进度、pjax、头像、访问统计、社交链接、备案信息、评论、代码复制等省略。</p>
 <h3 id="在Github创建Repository">在Github创建Repository</h3>
@@ -405,8 +406,8 @@
       <i class="fa fa-chevron-left"></i> 使用Typora+PicGo写文章（win10 64）
     </a></div>
       <div class="post-nav-item">
-    <a href="/posts/202006281713.html" rel="next" title="Elasticsearch站内搜索（Kibana可视化管理）">
-      Elasticsearch站内搜索（Kibana可视化管理） <i class="fa fa-chevron-right"></i>
+    <a href="/posts/202005191919.html" rel="next" title="WebUploader多图上传，html5上传带进度条、图片删除、拖拽排序及初始化图片回显（jquery）">
+      WebUploader多图上传，html5上传带进度条、图片删除、拖拽排序及初始化图片回显（jquery） <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -466,7 +467,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Hexo创建本地博客"><span class="nav-number">1.</span> <span class="nav-text">使用Hexo创建本地博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#准备工作"><span class="nav-number">1.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建本地博客"><span class="nav-number">1.2.</span> <span class="nav-text">创建本地博客</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给Hexo安装NexT主题"><span class="nav-number">2.</span> <span class="nav-text">给Hexo安装NexT主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改外观及配置"><span class="nav-number">3.</span> <span class="nav-text">修改外观及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#导航栏添加分类和标签栏目"><span class="nav-number">3.1.</span> <span class="nav-text">导航栏添加分类和标签栏目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Front-Matter模板"><span class="nav-number">3.2.</span> <span class="nav-text">Front-Matter模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建文章"><span class="nav-number">3.3.</span> <span class="nav-text">新建文章</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#404页面"><span class="nav-number">3.4.</span> <span class="nav-text">404页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#永久链接"><span class="nav-number">3.5.</span> <span class="nav-text">永久链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义样式"><span class="nav-number">3.6.</span> <span class="nav-text">自定义样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#博文加密"><span class="nav-number">3.7.</span> <span class="nav-text">博文加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它配置"><span class="nav-number">3.8.</span> <span class="nav-text">其它配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在Github创建Repository"><span class="nav-number">4.</span> <span class="nav-text">在Github创建Repository</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布Hexo到远程GitHub"><span class="nav-number">5.</span> <span class="nav-text">发布Hexo到远程GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绑定自定义域名"><span class="nav-number">6.</span> <span class="nav-text">绑定自定义域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完善及常用命令"><span class="nav-number">7.</span> <span class="nav-text">完善及常用命令</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Hexo创建本地博客"><span class="nav-text">使用Hexo创建本地博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#准备工作"><span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建本地博客"><span class="nav-text">创建本地博客</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给Hexo安装NexT主题"><span class="nav-text">给Hexo安装NexT主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改外观及配置"><span class="nav-text">修改外观及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#导航栏添加分类和标签栏目"><span class="nav-text">导航栏添加分类和标签栏目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Front-Matter模板"><span class="nav-text">Front-Matter模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建文章"><span class="nav-text">新建文章</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#404页面"><span class="nav-text">404页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#永久链接"><span class="nav-text">永久链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义样式"><span class="nav-text">自定义样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#博文加密"><span class="nav-text">博文加密</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它配置"><span class="nav-text">其它配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在Github创建Repository"><span class="nav-text">在Github创建Repository</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布Hexo到远程GitHub"><span class="nav-text">发布Hexo到远程GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绑定自定义域名"><span class="nav-text">绑定自定义域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完善及常用命令"><span class="nav-text">完善及常用命令</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -659,6 +660,7 @@
   .add(NexT.motion.middleWares.postList)
   .bootstrap();
   }
+
   NexT.utils.updateSidebarPosition();
 
   // 如果存在 博客加密

@@ -386,6 +386,7 @@ pre {
   color: #4d4d4c;
   line-height: 1.6;
   margin: 0 auto 20px;
+  overflow: auto;
 }
 pre,
 code {
@@ -1168,7 +1169,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff0b8f;
+  background: #ecffcf;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
